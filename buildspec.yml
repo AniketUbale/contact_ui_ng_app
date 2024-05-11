@@ -14,11 +14,11 @@ phases:
   build:
     commands:
       - echo 'login to Docker Registery'
-      - aws ecr get-login-password --region ap-south-1 | docker login --username $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 470673369728.dkr.ecr.ap-south-1.amazonaws.com
       - echo "build image"
-      - docker build -t $DOCKER_USERNAME/contact_ui-frontend .
-      - docker tag $DOCKER_USERNAME/contact_ui-frontend
-      - docker push $DOCKER_USERNAME/contact_ui-frontend
+      - docker build -t contact_ui-frontend
+      - docker tag contact_ui-frontend:latest 470673369728.dkr.ecr.ap-south-1.amazonaws.com/contact_ui-frontend:latest
+      - docker push contact_ui-frontend:latest 470673369728.dkr.ecr.ap-south-1.amazonaws.com/contact_ui-frontend:latest
   post_build:
     commands:
       - echo Build completed on `date`
