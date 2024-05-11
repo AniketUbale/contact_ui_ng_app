@@ -1,5 +1,9 @@
 version: 0.2
-
+env:
+  parameter-store:
+    DOCKER_URL: /app/docker-registery/url
+    DOCKER_USERNAME: /app/docker-credential/username
+    DOCKER_PASSWORD: /app/docker-credential/password
 phases:
   install:
     runtime-versions:
@@ -10,11 +14,11 @@ phases:
   build:
     commands:
       - echo 'login to Docker Registery'
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 470673369728.dkr.ecr.ap-south-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
       - echo "build image"
-      - docker build -t frontend
-      - docker tag frontend:latest 470673369728.dkr.ecr.ap-south-1.amazonaws.com/frontend:latest
-      - docker push frontend:latest 470673369728.dkr.ecr.ap-south-1.amazonaws.com/frontend:latest
+      - docker build -t $DOCKER_USERNAME/contact_ui-frontend
+      - docker tag $DOCKER_USERNAME/contact_ui-frontend
+      - docker push $DOCKER_USERNAME/contact_ui-frontend
   post_build:
     commands:
       - echo Build completed on `date`
