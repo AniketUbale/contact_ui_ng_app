@@ -8,6 +8,7 @@ phases:
   install:
     runtime-versions:
       nodejs: 14
+      docker.io: 18
   pre_build:
     commands:
       - npm install
