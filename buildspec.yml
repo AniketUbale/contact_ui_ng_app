@@ -18,12 +18,12 @@ phases:
   build:
     commands:
       - echo 'building image'
-      - docker build -t $REPO_URI:latest .
-      - docker tag $REPO_URI/frontend:latest
+      - docker build -t test-contact-ui .
+      - docker tag test-contact-ui:latest public.ecr.aws/z1y9s0y2/test-contact-ui:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push $REPO_URI/frontend:latest
+      - docker push test-contact-ui:latest public.ecr.aws/z1y9s0y2/test-contact-ui:latest
 artifacts:
   files:
     - '**/*'
