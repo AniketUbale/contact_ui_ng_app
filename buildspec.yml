@@ -11,18 +11,19 @@ phases:
   pre_build:
     commands:
       - npm install
+      - aws --version
       - echo "login to docker"
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/z1y9s0y2
-
+      - REPO_URI=public.ecr.aws/z1y9s0y2/contact_ui-frontend
   build:
     commands:
       - echo 'building image'
-      - docker build -t contact_ui-frontend
-      - docker tag contact_ui-frontend:latest public.ecr.aws/z1y9s0y2/contact_ui-frontend:latest
+      - docker build -t $REPO_URI:latest .
+      - docker tag $REPO_URI:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push contact_ui-frontend:latest public.ecr.aws/z1y9s0y2/contact_ui-frontend:latest
+      - docker push $REPO_URI:latest
 artifacts:
   files:
     - '**/*'
