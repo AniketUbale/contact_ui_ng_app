@@ -13,8 +13,8 @@ phases:
       - npm install
       - aws --version
       - echo "login to docker"
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/z1y9s0y2
-      - REPO_URI=public.ecr.aws/z1y9s0y2/contact_ui-frontend
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/z1y9s0y2 	
+      - REPO_URI=public.ecr.aws/z1y9s0y2/test-contact-ui
   build:
     commands:
       - echo 'building image'
