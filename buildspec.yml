@@ -23,7 +23,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push test-contact-ui:latest public.ecr.aws/z1y9s0y2/test-contact-ui:latest
+      - docker push public.ecr.aws/z1y9s0y2/test-contact-ui:latest
 artifacts:
   files:
     - '**/*'
