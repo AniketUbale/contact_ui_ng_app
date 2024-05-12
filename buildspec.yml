@@ -19,11 +19,11 @@ phases:
     commands:
       - echo 'building image'
       - docker build -t $REPO_URI:latest .
-      - docker tag $REPO_URI:latest
+      - docker tag $REPO_URI/frontend:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push $REPO_URI:latest
+      - docker push $REPO_URI/frontend:latest
 artifacts:
   files:
     - '**/*'
